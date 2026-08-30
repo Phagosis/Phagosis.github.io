@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyushConnect — Where Tradition Meets the Talent Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink-950:#11161d; --ink-900:#161d26; --ink-800:#1d2631; --ink-700:#28333f; --ink-line:#2f3b47;
+  --turmeric:#e0a324; --turmeric-soft:#f2c869;
+  --neem:#4f7a63; --neem-soft:#7ea88d;
+  --clay:#c1633f; --plum:#8d74b8;
+  --text-hi:#f4efe4; --text-mid:#b9c0c9; --text-dim:#7d8894;
+  --radius:14px;
+  --shadow-lift:0 12px 30px -12px rgba(0,0,0,.55);
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:'Manrope', -apple-system, sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+  --nav-bg:17,22,29;
+}
+html[data-theme="light"]{
+  --ink-950:#faf5ea; --ink-900:#ffffff; --ink-800:#f4ecdb; --ink-700:#ecdfc6; --ink-line:#e2d4b8;
+  --turmeric:#c98424; --turmeric-soft:#a86a16;
+  --neem:#4f7a63; --neem-soft:#3c6350;
+  --clay:#b8583a; --plum:#79609e;
+  --text-hi:#241f18; --text-mid:#544d3f; --text-dim:#847a63;
+  --shadow-lift:0 12px 28px -14px rgba(80,60,20,.28);
+  --nav-bg:250,245,234;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 500px at 12% -10%, rgba(224,163,36,.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(79,122,99,.14), transparent 55%),
+    var(--ink-950);
+  color:var(--text-mid); font-family:var(--font-body); line-height:1.55;
+  transition:background-color .25s ease, color .25s ease;
+}
+::selection{background:var(--turmeric);color:var(--ink-950)}
+a{color:inherit}
+h1,h2,h3,h4,h5{font-family:var(--font-display);color:var(--text-hi);letter-spacing:-.01em;margin:0}
+.eyebrow{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--turmeric-soft)}
+.container-xl{max-width:1180px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--turmeric-soft);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in-view{opacity:1;transform:none}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(var(--nav-bg),.85);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--ink-line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:1.28rem;color:var(--text-hi);text-decoration:none}
+.brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(140deg,var(--turmeric),var(--clay));display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.8rem;font-weight:700;color:var(--ink-950)}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0}
+.nav-links a{padding:9px 14px;border-radius:999px;font-size:.92rem;font-weight:600;text-decoration:none;color:var(--text-mid);transition:.2s}
+.nav-links a:hover{color:var(--text-hi);background:var(--ink-800)}
+.btn{border:none;cursor:pointer;font-family:var(--font-body);font-weight:700;border-radius:999px;padding:10px 20px;font-size:.92rem;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--turmeric);color:var(--ink-950)}
+.btn-primary:hover{background:var(--turmeric-soft);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-hi);border:1px solid var(--ink-line)}
+.btn-ghost:hover{border-color:var(--turmeric-soft);color:var(--turmeric-soft)}
+.btn-outline-neem{background:transparent;border:1px solid var(--neem-soft);color:var(--neem-soft)}
+.btn-outline-neem:hover{background:rgba(126,168,141,.12)}
+.btn-sm{padding:7px 14px;font-size:.82rem}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none!important}
+.btn-block{width:100%;justify-content:center;padding:12px}
+.navToggle{display:none;background:none;border:1px solid var(--ink-line);color:var(--text-hi);border-radius:8px;padding:6px 10px}
+
+/* ---------- HERO ---------- */
+.hero{padding:150px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,4.1vw,3.5rem);font-weight:600;line-height:1.08;margin:14px 0 20px}
+.hero h1 em{font-style:italic;color:var(--turmeric-soft)}
+.hero p.lead{font-size:1.05rem;max-width:52ch;color:var(--text-mid)}
+.hero-stats{display:flex;gap:28px;margin-top:30px}
+.stat b{display:block;font-family:var(--font-display);font-size:1.7rem;color:var(--text-hi)}
+.stat span{font-size:.8rem;color:var(--text-dim)}
+.rx-card{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:20px;padding:26px;box-shadow:var(--shadow-lift);position:relative;overflow:hidden}
+.rx-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(120deg, transparent 0 26px, rgba(224,163,36,.05) 26px 27px);pointer-events:none}
+.rx-card .tag{font-family:var(--font-mono);font-size:.68rem;color:var(--neem-soft);letter-spacing:.1em}
+.rx-line{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px dashed var(--ink-line);font-size:.86rem}
+.rx-line:last-child{border-bottom:none}
+.rx-line b{color:var(--text-hi);font-weight:600}
+.match-pill{font-family:var(--font-mono);font-size:.72rem;padding:3px 10px;border-radius:999px;background:rgba(79,122,99,.22);color:var(--neem-soft);border:1px solid rgba(79,122,99,.4)}
+.search-shell{margin-top:44px;background:var(--ink-900);border:1px solid var(--ink-line);border-radius:16px;padding:6px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-lift)}
+.search-shell i{color:var(--text-dim);margin-left:12px}
+.search-shell input{flex:1;background:transparent;border:none;color:var(--text-hi);padding:12px 6px;font-size:.98rem}
+.search-shell input:focus{outline:none}
+
+section{padding:76px 0}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px;flex-wrap:wrap}
+.section-head h2{font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:600}
+
+/* ---------- FILTER + CARDS ---------- */
+.layout{display:grid;grid-template-columns:250px 1fr;gap:30px;align-items:start}
+.filter-box{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);padding:22px;position:sticky;top:90px}
+.filter-box h6{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin:0 0 14px}
+.chip-check{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.88rem;color:var(--text-mid);cursor:pointer}
+.chip-check input{accent-color:var(--turmeric);width:16px;height:16px}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cards-grid.compact{gap:12px}
+.opening-card{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;transition:.2s}
+.compact .opening-card{padding:14px}
+.opening-card:hover{border-color:var(--turmeric);transform:translateY(-3px)}
+.badge-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
+.badge{font-family:var(--font-mono);font-size:.66rem;padding:4px 9px;border-radius:999px;border:1px solid;letter-spacing:.02em;white-space:nowrap}
+.badge-domain{color:var(--turmeric-soft);border-color:rgba(224,163,36,.4);background:rgba(224,163,36,.08)}
+.badge-status{color:var(--neem-soft);border-color:rgba(126,168,141,.35);background:rgba(126,168,141,.08)}
+.opening-card h5{font-size:1.02rem;font-weight:600;margin-bottom:4px}
+.opening-card .org{font-size:.8rem;color:var(--text-dim);margin-bottom:8px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.skill-tag{font-size:.7rem;padding:3px 9px;border-radius:999px;background:var(--ink-800);border:1px solid var(--ink-line);color:var(--text-mid)}
+.meta-row{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;padding-top:12px;margin-top:auto;border-top:1px solid var(--ink-line)}
+.stipend{color:var(--neem-soft);font-weight:700;font-size:.86rem}
+
+/* ---------- COMPANY DIRECTORY ---------- */
+.company-shell{display:grid;grid-template-columns:340px 1fr;gap:24px}
+.company-list{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);max-height:560px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--ink-line) transparent}
+.company-list::-webkit-scrollbar{width:6px}
+.company-list::-webkit-scrollbar-thumb{background:var(--ink-line);border-radius:3px}
+.company-list-head{padding:14px 18px;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--turmeric-soft);border-bottom:1px solid var(--ink-line);position:sticky;top:0;background:var(--ink-900)}
+.company-row{width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--ink-800);padding:12px 16px;display:flex;align-items:center;gap:12px;color:var(--text-mid);cursor:pointer;transition:.15s}
+.company-row:hover{background:var(--ink-800);color:var(--text-hi)}
+.company-row.active{background:rgba(224,163,36,.09);color:var(--text-hi);border-left:2px solid var(--turmeric)}
+.mono-badge{flex:none;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:.68rem;color:var(--ink-950)}
+.logo-tile{flex:none;width:34px;height:34px;border-radius:9px;background:#fff;border:1px solid var(--ink-line);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+.logo-tile img{width:100%;height:100%;object-fit:contain;padding:4px}
+.logo-tile .logo-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:.62rem;color:#fff;border-radius:8px}
+.logo-tile.lg{width:52px;height:52px;border-radius:12px}
+.logo-tile.lg img{padding:7px}
+.logo-tile.lg .logo-fallback{font-size:.78rem}
+.logo-tile.sm{width:28px;height:28px;border-radius:7px}
+.logo-tile.sm img{padding:3px}
+.company-row .co-name{font-weight:600;font-size:.88rem;display:block}
+.company-row .co-sector{display:block;font-size:.72rem;color:var(--text-dim);margin-top:1px}
+.company-detail{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);padding:32px;min-height:560px}
+.co-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:6px}
+.co-head-left{display:flex;align-items:center;gap:14px}
+.co-head h3{font-size:1.4rem}
+.co-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--text-dim);margin:12px 0 18px}
+.co-meta span{display:flex;align-items:center;gap:6px}
+.co-desc{font-size:.92rem;color:var(--text-mid);max-width:62ch;margin-bottom:22px}
+.co-openings-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.co-role-row{padding:14px 16px;background:var(--ink-800);border:1px solid var(--ink-line);border-radius:10px;margin-bottom:10px}
+.co-role-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px}
+.co-role-row .role{font-weight:600;color:var(--text-hi);font-size:.92rem}
+.co-role-row .sub{font-size:.76rem;color:var(--text-dim);margin-top:2px}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--text-dim);padding:60px 20px}
+.empty-state i{font-size:2.4rem;color:var(--turmeric-soft);margin-bottom:14px}
+
+/* ---------- LOGO MARQUEE ---------- */
+.marquee-wrap{border-top:1px solid var(--ink-line);border-bottom:1px solid var(--ink-line);padding:34px 0;overflow:hidden;background:var(--ink-900)}
+.marquee-label{text-align:center;margin-bottom:18px}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:scrollX 38s linear infinite}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+@keyframes scrollX{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.logo-chip{flex:none;display:flex;align-items:center;gap:10px;padding:10px 18px;border:1px solid var(--ink-line);border-radius:12px;background:var(--ink-800);text-decoration:none;color:var(--text-hi);font-weight:700;font-size:.86rem;transition:.2s}
+.logo-chip:hover{border-color:var(--turmeric);transform:translateY(-2px)}
+.logo-chip .mono-badge{width:28px;height:28px;font-size:.62rem}
+
+/* ---------- SKILL MAPPING ---------- */
+.skill-panel{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);padding:28px}
+.meter{margin-bottom:20px}
+.meter-top{display:flex;justify-content:space-between;font-size:.85rem;color:var(--text-mid);margin-bottom:7px}
+.meter-track{height:7px;border-radius:99px;background:var(--ink-800);overflow:hidden}
+.meter-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--turmeric),var(--turmeric-soft));width:0;transition:width 1.1s ease}
+.meter-fill.neem{background:linear-gradient(90deg,var(--neem),var(--neem-soft))}
+.check-list{list-style:none;margin:18px 0 0;padding:0}
+.check-list li{display:flex;gap:10px;font-size:.92rem;color:var(--text-mid);padding:7px 0}
+.check-list i{color:var(--neem-soft)}
+
+/* ---------- COURSES ---------- */
+.course-card{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:var(--radius);padding:22px;height:100%;display:flex;flex-direction:column}
+.course-card h5{font-size:1.02rem;margin:10px 0 8px}
+.course-card p{font-size:.86rem;color:var(--text-mid);flex:1}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink-950);border-top:1px solid var(--ink-line);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.1fr;gap:36px}
+footer h6{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+footer p, footer a{font-size:.85rem;color:var(--text-mid);text-decoration:none}
+footer a:hover{color:var(--turmeric-soft)}
+.team-item{display:flex;justify-content:space-between;gap:8px;padding:5px 0;font-size:.83rem}
+.team-item .role{color:var(--text-dim);font-size:.74rem}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--ink-line);font-size:.8rem;color:var(--text-dim);flex-wrap:wrap;gap:12px}
+.social-row a{width:34px;height:34px;border:1px solid var(--ink-line);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-left:8px}
+
+/* ---------- MODALS ---------- */
+.modal-backdrop-x{position:fixed;inset:0;background:rgba(10,13,17,.72);backdrop-filter:blur(3px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop-x.show{display:flex}
+.modal-box{background:var(--ink-900);border:1px solid var(--ink-line);border-radius:16px;max-width:460px;width:100%;box-shadow:var(--shadow-lift);max-height:90vh;overflow-y:auto}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--ink-line)}
+.modal-head h5{font-size:1.1rem}
+.modal-close{background:none;border:none;color:var(--text-dim);font-size:1.3rem;cursor:pointer;line-height:1}
+.modal-close:hover{color:var(--text-hi)}
+.modal-body-x{padding:22px}
+.modal-foot{padding:16px 22px;border-top:1px solid var(--ink-line);display:flex;justify-content:flex-end;gap:10px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;color:var(--text-mid);margin-bottom:6px;font-weight:600}
+.field input,.field select{width:100%;background:var(--ink-800);border:1px solid var(--ink-line);border-radius:9px;padding:11px 12px;color:var(--text-hi);font-family:var(--font-body);font-size:.9rem}
+.field input:focus,.field select:focus{outline:none;border-color:var(--turmeric)}
+.applying-for{font-size:.85rem;color:var(--text-dim);margin-bottom:16px}
+.applying-for b{color:var(--turmeric-soft)}
+.form-note{font-size:.78rem;color:var(--text-dim);margin-top:2px;display:block}
+.success-state{text-align:center;padding:20px 6px 6px}
+.success-state i{font-size:2.6rem;color:var(--neem-soft);margin-bottom:14px;display:block}
+.success-state h6{color:var(--text-hi);font-size:1.05rem;margin-bottom:6px}
+.success-state p{font-size:.86rem;color:var(--text-dim)}
+.error-note{font-size:.82rem;color:#e07a5f;margin-top:10px;display:none}
+.signup-choice p{margin-bottom:20px;text-align:center}
+.back-link{background:none;border:none;color:var(--text-dim);font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:5px;margin-bottom:14px}
+.back-link:hover{color:var(--turmeric-soft)}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--ink-900);border:1px solid var(--ink-line);color:var(--text-hi);padding:13px 20px;border-radius:11px;font-size:.86rem;box-shadow:var(--shadow-lift);z-index:3000;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(8px);transition:.25s}
+.toast.show{opacity:1;transform:none}
+.toast i{color:var(--neem-soft)}
+
+@media (max-width: 940px){
+  .hero-grid{grid-template-columns:1fr}
+  .layout{grid-template-columns:1fr}
+  .filter-box{position:static}
+  .company-shell{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media (max-width: 640px){
+  .nav-links{display:none}
+  .navToggle{display:inline-flex}
+  .cards-grid{grid-template-columns:1fr}
+  .hero{padding-top:130px}
+  .foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container-xl nav-inner">
+    <a href="#" class="brand"><span class="mark">AC</span>AyushConnect</a>
+    <ul class="nav-links">
+      <li><a href="#internships">Internships</a></li>
+      <li><a href="#skillMapping">Skill Mapping</a></li>
+      <li><a href="#companies">Companies</a></li>
+      <li><a href="#courses">Courses</a></li>
+    </ul>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="btn btn-ghost btn-sm" onclick="openModal('settingsModal')"><i class="bi bi-sliders"></i> Settings</button>
+      <button class="btn btn-primary btn-sm" onclick="openSignupModal()">Sign Up</button>
+      <button class="navToggle"><i class="bi bi-list"></i></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container-xl hero-grid">
+    <div>
+      <span class="eyebrow">SIH 2026 · Academia × Industry Placement Grid</span>
+      <h1>Where root science <em>meets</em><br>the modern talent pipeline.</h1>
+      <p class="lead">AyushConnect maps BCA, data and life-science students straight into internships and placements across 19 partner organisations — from Big Tech to India's largest IT services firms — scored against the skills you already have.</p>
+
+      <div class="search-shell">
+        <i class="bi bi-search"></i>
+        <input type="text" id="searchInput" placeholder="Search a role, company or skill…" oninput="filterCards()">
+        <button class="btn btn-primary" onclick="filterCards()">Search</button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><b data-count="19">0</b><span>Partner organisations</span></div>
+        <div class="stat"><b data-count="0" id="statOpenings">0</b><span>Live roles listed</span></div>
+        <div class="stat"><b data-count="6">0</b><span>Career tracks mapped</span></div>
+      </div>
+    </div>
+
+    <div class="rx-card reveal">
+      <span class="tag">◆ TODAY'S TOP MATCH</span>
+      <div class="rx-line"><span>Role</span><b>Software Engineering Intern / SDE-1</b></div>
+      <div class="rx-line"><span>Organisation</span><b>Google</b></div>
+      <div class="rx-line"><span>Vacancies</span><b>150–250 / year</b></div>
+      <div class="rx-line"><span>Stipend</span><b>₹1,15,000 / month</b></div>
+      <div class="rx-line"><span>Track</span><span class="match-pill">Software Engineering</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="internships">
+  <div class="container-xl">
+    <div class="section-head">
+      <div><span class="eyebrow">Openings</span><h2>Featured internships &amp; placements</h2></div>
+      <span class="badge badge-status" id="listingCount">— listings</span>
+    </div>
+    <div class="layout">
+      <aside class="filter-box">
+        <h6>Career track</h6>
+        <div id="categoryFilters"></div>
+        <h6 style="margin-top:22px">View</h6>
+        <label class="chip-check"><input type="checkbox" id="compactToggle" onchange="toggleCompact()"> Compact card view</label>
+      </aside>
+      <div class="cards-grid" id="cardContainer"></div>
+    </div>
+  </div>
+</section>
+
+<section id="companies" style="border-top:1px solid var(--ink-line)">
+  <div class="container-xl">
+    <div class="section-head">
+      <div><span class="eyebrow">Directory</span><h2>Partner organisations</h2></div>
+      <p style="max-width:38ch;font-size:.88rem;margin:0">Click any organisation to see its full profile and every open role.</p>
+    </div>
+    <div class="company-shell">
+      <div class="company-list" id="companyList"></div>
+      <div class="company-detail" id="companyDetail">
+        <div class="empty-state">
+          <i class="bi bi-signpost-2"></i>
+          <h5 style="color:var(--text-hi)">Pick an organisation</h5>
+          <p style="max-width:36ch">Select any name on the left to view its sector, roles, vacancies and stipend range.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="container-xl marquee-label">
+    <span class="eyebrow">Recruiting through AyushConnect</span>
+  </div>
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<section id="skillMapping">
+  <div class="container-xl" style="display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center">
+    <div>
+      <span class="eyebrow">Engine</span>
+      <h2 style="margin:10px 0 16px">Skill mapping, not keyword matching</h2>
+      <p style="max-width:48ch">Your academic concentration — BCA, Physics, Chemistry, Biology — is scored directly against live roles across the placement grid, government and private alike.</p>
+      <ul class="check-list">
+        <li><i class="bi bi-check-circle-fill"></i> Automated gap analysis for technical stacks</li>
+        <li><i class="bi bi-check-circle-fill"></i> Direct recruiter visibility from verified projects</li>
+        <li><i class="bi bi-check-circle-fill"></i> Customised learning-pathway recommendations</li>
+      </ul>
+    </div>
+    <div class="skill-panel reveal">
+      <h5 style="font-size:1.05rem;margin-bottom:20px">Your skill-match score</h5>
+      <div class="meter">
+        <div class="meter-top"><span>Frontend Development (HTML/CSS/JS)</span><span style="color:var(--turmeric-soft)">92%</span></div>
+        <div class="meter-track"><div class="meter-fill" data-fill="92"></div></div>
+      </div>
+      <div class="meter">
+        <div class="meter-top"><span>Database Management &amp; SQL</span><span style="color:var(--turmeric-soft)">78%</span></div>
+        <div class="meter-track"><div class="meter-fill" data-fill="78"></div></div>
+      </div>
+      <div class="meter">
+        <div class="meter-top"><span>Ayush Healthcare Terminology</span><span style="color:var(--neem-soft)">85%</span></div>
+        <div class="meter-track"><div class="meter-fill neem" data-fill="85"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="courses" style="border-top:1px solid var(--ink-line)">
+  <div class="container-xl">
+    <span class="eyebrow">Learn</span>
+    <h2 style="margin:10px 0 30px">Recommended certification courses</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px" id="coursesGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container-xl foot-grid">
+    <div>
+      <a href="#" class="brand" style="margin-bottom:14px;display:inline-flex"><span class="mark">AC</span>AyushConnect</a>
+      <p style="max-width:32ch">Bridging India's traditional healthcare systems and modern software talent through direct academia–industry integration.</p>
+    </div>
+    <div>
+      <h6>Quick links</h6>
+      <p><a href="#internships">Find internships</a></p>
+      <p><a href="#skillMapping">Skill mapping</a></p>
+      <p><a href="#companies">Partner directory</a></p>
+      <p><a href="#courses">Courses</a></p>
+    </div>
+    <div>
+      <h6>Contact</h6>
+      <p><i class="bi bi-geo-alt"></i> New Delhi, India 110001</p>
+      <p><a href="mailto:sonuyadav481216@gmail.com"><i class="bi bi-envelope"></i> sonuyadav481216@gmail.com</a></p>
+      <p><i class="bi bi-telephone"></i> +91 92668 32998</p>
+    </div>
+    <div>
+      <h6>Team</h6>
+      <div id="teamList"></div>
+    </div>
+  </div>
+  <div class="container-xl foot-bottom">
+    <span>© 2026 AyushConnect · Built for Smart India Hackathon</span>
+    <div class="social-row">
+      <a href="#"><i class="bi bi-github"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+      <a href="#"><i class="bi bi-twitter-x"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== MODALS ===================== -->
+
+<div class="modal-backdrop-x" id="settingsModal">
+  <div class="modal-box">
+    <div class="modal-head"><h5>Portal settings</h5><button class="modal-close" onclick="closeModal('settingsModal')">&times;</button></div>
+    <div class="modal-body-x">
+      <div class="field">
+        <label>Theme</label>
+        <select id="themeSelect">
+          <option value="dark">Dark (Turmeric &amp; Neem)</option>
+          <option value="light">Light (Pastel)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Accent colour</label>
+        <select id="accentSelect">
+          <option value="gold">Turmeric Gold (default)</option>
+          <option value="green">Deep Neem Green</option>
+          <option value="clay">Terracotta Clay</option>
+          <option value="plum">Dusk Plum</option>
+        </select>
+      </div>
+      <label class="chip-check" style="margin-bottom:6px">
+        <input type="checkbox" id="compactToggleSettings" onchange="syncCompactToggles(this.checked)"> Compact card view
+      </label>
+      <div class="field" style="margin-top:16px">
+        <label>Default job region</label>
+        <input type="text" id="regionInput" value="New Delhi, India">
+        <span class="form-note">Saved for your reference — used to pre-fill future filters.</span>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal('settingsModal')">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="saveSettings()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop-x" id="signupModal">
+  <div class="modal-box" id="signupBox"></div>
+</div>
+
+<div class="modal-backdrop-x" id="applyModal">
+  <div class="modal-box" id="applyBox"></div>
+</div>
+
+<div class="toast" id="toast"><i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span></div>
+
+<script>
+/* ============================================================
+   CONFIG
+   ============================================================ */
+const FORMSPREE_ID = "mwlkpnny";
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+const TEAM = [
+  {name:"Khushi", role:"Team Lead"},
+  {name:"Sonu Yadav", role:"Site Developer"},
+  {name:"Smeru", role:"Team Member"},
+  {name:"Sameer", role:"Team Member"},
+  {name:"Sahil Mandal", role:"PPT & Presentation"},
+  {name:"Rhythm", role:"Team Member"}
+];
+
+/* ============================================================
+   CATEGORIES
+   ============================================================ */
+const CATEGORY_LABELS = {
+  swe:"Software Engineering", data:"Data & AI", cloud:"Cloud & Infrastructure",
+  security:"Cybersecurity", quant:"Quant & Finance", product:"Product & Design"
+};
+const BADGE_COLORS = ["var(--turmeric)","var(--neem)","var(--clay)","var(--plum)","var(--turmeric-soft)","var(--neem-soft)"];
+
+/* ============================================================
+   COMPANIES — full dataset, one entry per organisation.
+   Each role: { title, type, vacancies, pay, skills:[], category }
+   ============================================================ */
+const COMPANIES = [
+{ name:"Google", sector:"Search, Cloud & Consumer Tech", website:"https://careers.google.com", logo:"assets/logos/google.webp",
+  desc:"Search, cloud computing and consumer technology spanning ads, Android and AI research.",
+  roles:[
+    {title:"Software Engineering Intern / SDE-1", type:"Internship / Full-time", vacancies:"150–250 / year", pay:"₹1,15,000/mo (Intern) · ₹30–40 LPA (FTE)", skills:["DSA","C++","Java","Python","System Design"], category:"swe"},
+    {title:"Data Scientist / Analyst", type:"Full-time / Internship", vacancies:"30–50 / year", pay:"₹90,000/mo · ₹22–32 LPA", skills:["SQL","Python","Machine Learning","Statistics","BigQuery"], category:"data"},
+    {title:"Product Management Intern", type:"Internship", vacancies:"10–20 / year", pay:"₹1,00,000/mo", skills:["Product Strategy","Wireframing","UX Principles","Analytics"], category:"product"}
+]},
+{ name:"Microsoft", sector:"Cloud & Enterprise Software", website:"https://careers.microsoft.com", logo:"assets/logos/microsoft.webp",
+  desc:"Enterprise software, cloud computing (Azure) and productivity tools including Windows and Microsoft 365.",
+  roles:[
+    {title:"Software Engineering Intern (with PPO)", type:"Internship", vacancies:"300+ / year", pay:"₹1,00,000/mo", skills:["C++","Java","Python","C#","DSA","Operating Systems"], category:"swe"},
+    {title:"Cloud Solution Engineer", type:"Full-time", vacancies:"80–120 / year", pay:"₹18–26 LPA", skills:["Azure","Networking","System Architecture","Linux"], category:"cloud"},
+    {title:"Data & AI Consultant", type:"Full-time / Internship", vacancies:"40–60 / year", pay:"₹80,000/mo · ₹16–22 LPA", skills:["Power BI","SQL","Python","Machine Learning","Data Warehousing"], category:"data"}
+]},
+{ name:"Amazon", sector:"E-commerce & Cloud (AWS)", website:"https://www.amazon.jobs", logo:"assets/logos/amazon.png",
+  desc:"E-commerce, cloud infrastructure (AWS) and logistics operating at global scale.",
+  roles:[
+    {title:"SDE Intern / SDE-1", type:"Internship / Full-time", vacancies:"400–600 / year", pay:"₹80,000–1,10,000/mo · ₹28–32 LPA", skills:["Java","OOP","DSA","Low-Level Design"], category:"swe"},
+    {title:"Business Analyst", type:"Full-time / Internship", vacancies:"100+ / year", pay:"₹50,000/mo · ₹12–18 LPA", skills:["Advanced Excel","SQL","Tableau","Data Storytelling"], category:"data"},
+    {title:"Cloud Support Associate (AWS)", type:"Full-time", vacancies:"150+ / year", pay:"₹12–16 LPA", skills:["Linux","TCP/IP","Bash Scripting","AWS Basics"], category:"cloud"}
+]},
+{ name:"Flipkart", sector:"E-commerce", website:"https://www.flipkartcareers.com", logo:"assets/logos/flipkart.svg",
+  desc:"India's leading e-commerce marketplace spanning retail, grocery and fashion.",
+  roles:[
+    {title:"SDE-1 / Software Engineering Intern", type:"Internship / Full-time", vacancies:"100–150 / year", pay:"₹50,000–70,000/mo · ₹18–26 LPA", skills:["Java","Spring Boot","DSA","Database Systems"], category:"swe"},
+    {title:"Data Analyst Intern", type:"Internship", vacancies:"30–50 / year", pay:"₹35,000–50,000/mo", skills:["SQL","Python","Power BI","Quantitative Analysis"], category:"data"},
+    {title:"Product Manager", type:"Full-time", vacancies:"15–25 / year", pay:"₹22–30 LPA", skills:["Roadmapping","A/B Testing","User Metrics","Agile"], category:"product"}
+]},
+{ name:"Goldman Sachs", sector:"Investment Banking & Finance", website:"https://www.goldmansachs.com/careers", logo:"assets/logos/goldman-sachs.jpeg",
+  desc:"Global investment bank offering trading, asset management and advisory services.",
+  roles:[
+    {title:"Summer Analyst (Engineering Track)", type:"Internship", vacancies:"150–200 / year", pay:"₹1,00,000–1,25,000/mo", skills:["Java","C++","Algorithms","Microservices","Git"], category:"swe"},
+    {title:"Quantitative Analyst / Risk Intern", type:"Internship / Full-time", vacancies:"40–60 / year", pay:"₹90,000/mo · ₹20–28 LPA", skills:["Financial Mathematics","Python","Stochastic Modeling","SQL"], category:"quant"}
+]},
+{ name:"Adobe", sector:"Creative & Marketing Software", website:"https://www.adobe.com/careers.html", logo:"assets/logos/adobe.jpg",
+  desc:"Creative and marketing software including Photoshop, Acrobat and Adobe Experience Cloud.",
+  roles:[
+    {title:"Research Intern / ML Engineer", type:"Internship / Full-time", vacancies:"30–50 / year", pay:"₹1,00,000/mo · ₹24–32 LPA", skills:["Computer Vision","PyTorch","Deep Learning","Mathematics"], category:"data"},
+    {title:"Product Development Intern (SDE)", type:"Internship", vacancies:"80–120 / year", pay:"₹85,000/mo", skills:["C++","JavaScript","React","Algorithm Optimization"], category:"swe"}
+]},
+{ name:"JPMorgan Chase & Co.", sector:"Banking & Financial Services", website:"https://careers.jpmorgan.com", logo:"assets/logos/jpmorgan.png",
+  desc:"Global financial services firm spanning banking, markets and asset management.",
+  roles:[
+    {title:"Software Engineer Intern", type:"Internship", vacancies:"200–300 / year", pay:"₹70,000–85,000/mo", skills:["Java","Spring Boot","Microservices","SQL","DSA"], category:"swe"},
+    {title:"Cybersecurity Analyst Trainee", type:"Full-time", vacancies:"50–80 / year", pay:"₹12–16 LPA", skills:["Network Security","SIEM Tools","Ethical Hacking","Python"], category:"security"},
+    {title:"Quantitative Research Intern", type:"Internship / Full-time", vacancies:"25–40 / year", pay:"₹90,000/mo · ₹22–28 LPA", skills:["Stochastic Calculus","Python/C++","Financial Modeling","Econometrics"], category:"quant"},
+    {title:"Data & Analytics Associate", type:"Full-time", vacancies:"60–90 / year", pay:"₹14–18 LPA", skills:["Tableau","SQL","Spark","ML Fundamentals"], category:"data"}
+]},
+{ name:"PayPal", sector:"FinTech / Digital Payments", website:"https://careers.pypl.com", logo:"assets/logos/paypal.svg",
+  desc:"Digital payments platform enabling online transactions and merchant services worldwide.",
+  roles:[
+    {title:"Software Engineer Intern", type:"Internship", vacancies:"50–80 / year", pay:"₹70,000/mo", skills:["Node.js","Java","REST APIs","OOD"], category:"swe"},
+    {title:"Data Scientist Intern", type:"Internship", vacancies:"20–30 / year", pay:"₹65,000/mo", skills:["Risk Analytics","Fraud Detection","SQL","Python"], category:"data"},
+    {title:"Frontend Engineer (UI)", type:"Full-time", vacancies:"35–50 / year", pay:"₹16–22 LPA", skills:["React","TypeScript","GraphQL","Web Performance"], category:"swe"},
+    {title:"Site Reliability Engineer (SRE)", type:"Full-time / Internship", vacancies:"20–30 / year", pay:"₹60,000/mo · ₹18–24 LPA", skills:["Linux","Kubernetes","Docker","AWS/GCP"], category:"cloud"}
+]},
+{ name:"Uber", sector:"Mobility & Logistics Tech", website:"https://www.uber.com/careers", logo:"assets/logos/uber.png",
+  desc:"Ride-hailing, delivery and logistics platform operating across hundreds of cities.",
+  roles:[
+    {title:"Backend Engineer / SDE Intern", type:"Internship / Full-time", vacancies:"40–60 / year", pay:"₹1,10,000/mo · ₹30–38 LPA", skills:["Go","Java","High-Availability Systems","Distributed DBs"], category:"swe"},
+    {title:"Operations & Supply Analyst", type:"Full-time", vacancies:"30–50 / year", pay:"₹12–18 LPA", skills:["SQL","Predictive Modeling","Excel","Strategic Ops"], category:"data"},
+    {title:"Mobile Engineer (Android/iOS)", type:"Full-time / Internship", vacancies:"25–40 / year", pay:"₹95,000/mo · ₹26–34 LPA", skills:["Kotlin","Swift","Mobile Architecture","RxJava"], category:"swe"},
+    {title:"Product Designer Intern", type:"Internship", vacancies:"10–15 / year", pay:"₹75,000/mo", skills:["Figma","Wireframing","User Research","Interaction Design"], category:"product"}
+]},
+{ name:"Atlassian", sector:"Enterprise Collaboration Software", website:"https://www.atlassian.com/company/careers", logo:"assets/logos/atlassian.png",
+  desc:"Collaboration and DevOps software including Jira, Confluence and Trello.",
+  roles:[
+    {title:"SDE Intern", type:"Internship", vacancies:"40–70 / year", pay:"₹1,00,000/mo", skills:["Java","Kotlin","Microservices","CS Fundamentals"], category:"swe"},
+    {title:"Site Reliability Engineer (SRE)", type:"Full-time", vacancies:"20–35 / year", pay:"₹22–30 LPA", skills:["Kubernetes","Docker","Python/Go","AWS","CI/CD"], category:"cloud"},
+    {title:"Product Manager Intern", type:"Internship", vacancies:"10–15 / year", pay:"₹85,000/mo", skills:["Agile/Jira","Product Strategy","Market Analysis"], category:"product"},
+    {title:"Data Engineer", type:"Full-time", vacancies:"20–30 / year", pay:"₹20–28 LPA", skills:["Spark","Snowflake","Airflow","SQL"], category:"data"}
+]},
+{ name:"Salesforce", sector:"Enterprise CRM Software", website:"https://www.salesforce.com/company/careers", logo:"assets/logos/salesforce.png",
+  desc:"Cloud-based CRM platform for sales, service and marketing teams.",
+  roles:[
+    {title:"Software Engineering Intern", type:"Internship", vacancies:"60–90 / year", pay:"₹75,000/mo", skills:["Java","OO Architecture","Web Frameworks"], category:"swe"},
+    {title:"QA Automation Engineer", type:"Full-time", vacancies:"30–45 / year", pay:"₹14–18 LPA", skills:["Selenium","Java","Cypress","Postman"], category:"swe"},
+    {title:"Salesforce Developer Trainee", type:"Full-time / Internship", vacancies:"50–80 / year", pay:"₹40,000/mo · ₹10–14 LPA", skills:["Apex","LWC","SOQL","Salesforce CRM"], category:"swe"},
+    {title:"Security Engineer Intern", type:"Internship", vacancies:"15–25 / year", pay:"₹70,000/mo", skills:["Threat Modeling","App Security","OWASP Top 10","Python"], category:"security"}
+]},
+{ name:"IBM", sector:"Enterprise IT & Consulting", website:"https://www.ibm.com/careers", logo:"assets/logos/ibm.png",
+  desc:"Enterprise IT, hybrid cloud and consulting services with a long-standing R&D legacy.",
+  roles:[
+    {title:"Associate Developer", type:"Full-time Entry Level", vacancies:"300+ / year", pay:"₹7–11 LPA", skills:["Java","Python","Web Frameworks","Core CS"], category:"swe"},
+    {title:"AI & Machine Learning Intern", type:"Internship", vacancies:"80–120 / year", pay:"₹30,000/mo", skills:["Watson AI API","Scikit-Learn","TensorFlow","NLP"], category:"data"},
+    {title:"Cloud Solutions Architect Trainee", type:"Full-time", vacancies:"100+ / year", pay:"₹8–12 LPA", skills:["IBM Cloud/AWS","Kubernetes","Hybrid Cloud","DevOps"], category:"cloud"},
+    {title:"Data Engineer Intern", type:"Internship", vacancies:"50–70 / year", pay:"₹25,000/mo", skills:["DB2","SQL","ETL Pipelines","Hadoop/Spark"], category:"data"}
+]},
+{ name:"Cisco", sector:"Networking & Cybersecurity", website:"https://jobs.cisco.com", logo:"assets/logos/cisco.png",
+  desc:"Networking hardware, cybersecurity and collaboration technology for enterprises.",
+  roles:[
+    {title:"Technical Consulting Engineer", type:"Full-time / Internship", vacancies:"150+ / year", pay:"₹60,000/mo · ₹14–18 LPA", skills:["CCNA Concepts","Computer Networks","Linux","Troubleshooting"], category:"cloud"},
+    {title:"Software Engineer Intern", type:"Internship", vacancies:"100+ / year", pay:"₹65,000/mo", skills:["C","C++","Networking Protocols","Python"], category:"swe"},
+    {title:"Cybersecurity Operations Intern", type:"Internship", vacancies:"40–60 / year", pay:"₹55,000/mo", skills:["Network Security","Cryptography","Firewalls","Wireshark"], category:"security"},
+    {title:"Hardware/Embedded Engineer", type:"Full-time", vacancies:"30–50 / year", pay:"₹15–20 LPA", skills:["Verilog/VHDL","ASIC Design","Embedded C","RTOS"], category:"swe"}
+]},
+{ name:"Oracle", sector:"Enterprise Database & Cloud", website:"https://www.oracle.com/careers", logo:"assets/logos/oracle.png",
+  desc:"Enterprise databases, cloud applications (OCI) and business software.",
+  roles:[
+    {title:"Server Technologies Intern / Engineer", type:"Internship / Full-time", vacancies:"200+ / year", pay:"₹50,000/mo · ₹14–20 LPA", skills:["Database Internals","C++","Java","Performance Tuning"], category:"swe"},
+    {title:"Cloud Infrastructure Associate (OCI)", type:"Full-time", vacancies:"100+ / year", pay:"₹12–16 LPA", skills:["OCI/AWS","Virtualization","Terraform","Shell Scripting"], category:"cloud"},
+    {title:"Applications Developer", type:"Full-time / Internship", vacancies:"150+ / year", pay:"₹45,000/mo · ₹11–15 LPA", skills:["PL/SQL","Oracle ERP","Java","REST APIs"], category:"swe"},
+    {title:"Data Analyst Intern", type:"Internship", vacancies:"40–60 / year", pay:"₹35,000/mo", skills:["Advanced SQL","Analytics Cloud","Python","Data Modeling"], category:"data"}
+]},
+{ name:"TCS", sector:"IT Services & Consulting", website:"https://www.tcs.com/careers", logo:"assets/logos/tcs.jpeg",
+  desc:"India's largest IT services firm delivering consulting and digital transformation.",
+  roles:[
+    {title:"Ninja Developer", type:"Full-time Entry Level", vacancies:"10,000+ / year", pay:"₹3.36 LPA", skills:["C","Java","Basic Web Dev","SQL"], category:"swe"},
+    {title:"Digital Associate", type:"Full-time Entry Level", vacancies:"4,000+ / year", pay:"₹7.0 LPA", skills:["Advanced DSA","Cloud","Microservices","Python/Java"], category:"swe"},
+    {title:"Prime Developer", type:"Full-time Entry Level", vacancies:"1,000+ / year", pay:"₹9.0–11.5 LPA", skills:["Competitive Coding","System Architecture","AI/ML"], category:"swe"},
+    {title:"R&D / Innovation Lab Intern", type:"Internship", vacancies:"200–400 / year", pay:"₹15,000–25,000/mo", skills:["Python","IoT","Data Science","Research Methodology"], category:"data"}
+]},
+{ name:"Infosys", sector:"IT Services & Consulting", website:"https://www.infosys.com/careers.html", logo:"assets/logos/infosys.webp",
+  desc:"Global IT services and consulting company focused on digital and cloud.",
+  roles:[
+    {title:"System Engineer (SE)", type:"Full-time Entry Level", vacancies:"8,000+ / year", pay:"₹3.6 LPA", skills:["Programming Fundamentals","OOP","SQL"], category:"swe"},
+    {title:"Specialist Programmer (SP)", type:"Full-time Entry Level", vacancies:"1,500+ / year", pay:"₹9.5 LPA", skills:["DSA","Dynamic Programming","System Design"], category:"swe"},
+    {title:"Digital Process Specialist", type:"Full-time", vacancies:"2,000+ / year", pay:"₹5.0 LPA", skills:["Cloud Basics","Full-Stack Web Dev","Automation"], category:"cloud"},
+    {title:"InStep Global Intern", type:"Internship", vacancies:"300+ / year", pay:"₹20,000–30,000/mo", skills:["Artificial Intelligence","Project Management","Business Analytics"], category:"product"}
+]},
+{ name:"Accenture", sector:"IT Services & Consulting", website:"https://www.accenture.com/in-en/careers", logo:"assets/logos/accenture.svg",
+  desc:"Global professional services firm in technology, strategy and operations consulting.",
+  roles:[
+    {title:"Advanced Application Engineering Associate", type:"Full-time Entry Level", vacancies:"6,000+ / year", pay:"₹6.5 LPA", skills:["Java/C#","Web Frameworks","Database Systems","Cloud Basics"], category:"swe"},
+    {title:"Application Tech Associate", type:"Full-time Entry Level", vacancies:"8,000+ / year", pay:"₹4.5 LPA", skills:["Software Testing","HTML/CSS/JS","Basic SQL","Troubleshooting"], category:"swe"},
+    {title:"Data Analytics Associate", type:"Internship / Full-time", vacancies:"500+ / year", pay:"₹25,000/mo · ₹5.5–7 LPA", skills:["Power BI","Advanced Excel","SQL","Data Storytelling"], category:"data"},
+    {title:"Cloud Security Associate", type:"Full-time", vacancies:"300+ / year", pay:"₹5.5–7.5 LPA", skills:["AWS/Azure Fundamentals","Network Security","IAM","Encryption"], category:"security"}
+]},
+{ name:"Cognizant", sector:"IT Services & Consulting", website:"https://careers.cognizant.com", logo:"assets/logos/cognizant.jpeg",
+  desc:"IT services and consulting firm specialising in digital engineering and operations.",
+  roles:[
+    {title:"GenC Developer", type:"Full-time Entry Level", vacancies:"5,000+ / year", pay:"₹4.0 LPA", skills:["Core Java","Database Concepts","Software Lifecycle"], category:"swe"},
+    {title:"GenC Elevate", type:"Full-time Entry Level", vacancies:"2,500+ / year", pay:"₹6.7 LPA", skills:["Full Stack Web Dev","Algorithms","SQL Optimization"], category:"swe"},
+    {title:"GenC Next", type:"Full-time Entry Level", vacancies:"500+ / year", pay:"₹9.0 LPA", skills:["Advanced Problem Solving","Cloud Architecture","Microservices"], category:"cloud"},
+    {title:"Software Quality Engineer Intern", type:"Internship / Full-time", vacancies:"300+ / year", pay:"₹18,000/mo · ₹4.2 LPA", skills:["Manual Testing","Selenium","Java","Bug Tracking"], category:"swe"}
+]},
+{ name:"HCLTech", sector:"IT Services & Consulting", website:"https://www.hcltech.com/careers", logo:"assets/logos/hcltech.jpeg",
+  desc:"Global technology company offering IT services, engineering and cloud solutions.",
+  roles:[
+    {title:"Software Engineer Trainee", type:"Full-time Entry Level", vacancies:"4,000+ / year", pay:"₹3.5–5.0 LPA", skills:["C#","Java","Database Management","Scripting"], category:"swe"},
+    {title:"Cybersecurity Operations Intern", type:"Internship", vacancies:"150+ / year", pay:"₹15,000–22,000/mo", skills:["SOC Monitoring","Linux Admin","Networking"], category:"security"},
+    {title:"Cloud & Infrastructure Engineer", type:"Full-time Entry Level", vacancies:"1,000+ / year", pay:"₹4.5–6.0 LPA", skills:["AWS/Azure Admin","Bash/PowerShell","Networking"], category:"cloud"},
+    {title:"Data Science Trainee", type:"Full-time / Internship", vacancies:"200+ / year", pay:"₹20,000/mo · ₹5.0–7.0 LPA", skills:["Python","ML Algorithms","Pandas","SQL"], category:"data"}
+]}
+];
+
+const COURSES = [
+  { badge:"Free Certificate", title:"Full-Stack Web Development", desc:"Master HTML, CSS, JavaScript and responsive UI design tailored for portal development." },
+  { badge:"Govt. Certified", title:"Ayurvedic Data Informatics", desc:"Learn how to catalog medicinal plants and structure clinical data safely." },
+  { badge:"Specialization", title:"Telemetry & IoT in Wellness", desc:"Understand how wearable devices stream health parameters for virtual yoga sessions." }
+];
+
+/* ============================================================
+   DERIVED DATA
+   ============================================================ */
+function flattenOpenings(){
+  const all=[];
+  COMPANIES.forEach(c=> c.roles.forEach(r=> all.push(Object.assign({}, r, {company:c.name, website:c.website}))));
+  return all;
+}
+const OPENINGS = flattenOpenings();
+function initials(name){
+  const clean = name.replace(/&.*$/,'').trim();
+  const parts = clean.split(/\s+/).filter(Boolean);
+  if(parts.length===1) return parts[0].slice(0,3).toUpperCase();
+  return (parts[0][0]+parts[1][0]).toUpperCase();
+}
+function esc(str){ return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+/* ============================================================
+   RENDER: openings grid + filters
+   ============================================================ */
+function renderCategoryFilters(){
+  const el = document.getElementById('categoryFilters');
+  el.innerHTML = Object.entries(CATEGORY_LABELS).map(([key,label])=>`
+    <label class="chip-check"><input type="checkbox" class="filter-checkbox" value="${key}" checked onchange="filterCards()"> ${label}</label>
+  `).join('');
+}
+
+function renderOpenings(list){
+  const el = document.getElementById('cardContainer');
+  document.getElementById('listingCount').textContent = list.length + ' listings';
+  if(!list.length){ el.innerHTML = `<p style="color:var(--text-dim)">No roles match that search yet — try clearing a filter.</p>`; return; }
+  el.innerHTML = list.map(o => `
+    <div class="opening-card">
+      <div class="badge-row">
+        <span class="badge badge-domain">${CATEGORY_LABELS[o.category]}</span>
+        <span class="badge badge-status">${esc(o.type)}</span>
+      </div>
+      <h5>${esc(o.title)}</h5>
+      <div class="org">${esc(o.company)}</div>
+      <div class="tag-row">${o.skills.slice(0,3).map(s=>`<span class="skill-tag">${esc(s)}</span>`).join('')}</div>
+      <div class="meta-row"><i class="bi bi-people"></i> ${esc(o.vacancies)}</div>
+      <div class="card-foot">
+        <span class="stipend">${esc(o.pay)}</span>
+        <button class="btn btn-primary btn-sm apply-btn" data-job="${esc(o.title)}" data-company="${esc(o.company)}">Apply</button>
+      </div>
+    </div>`).join('');
+}
+
+function filterCards(){
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const active = Array.from(document.querySelectorAll('.filter-checkbox')).filter(c=>c.checked).map(c=>c.value);
+  const filtered = OPENINGS.filter(o => active.includes(o.category) &&
+    (o.title+' '+o.company+' '+o.skills.join(' ')).toLowerCase().includes(query));
+  renderOpenings(filtered);
+}
+
+function toggleCompact(){
+  const on = document.getElementById('compactToggle').checked;
+  document.getElementById('cardContainer').classList.toggle('compact', on);
+  document.getElementById('compactToggleSettings').checked = on;
+  localStorage.setItem('ac_compact', on ? '1':'0');
+}
+function syncCompactToggles(val){
+  document.getElementById('compactToggle').checked = val;
+  document.getElementById('cardContainer').classList.toggle('compact', val);
+  localStorage.setItem('ac_compact', val ? '1':'0');
+}
+
+/* ============================================================
+   RENDER: company directory
+   ============================================================ */
+function logoTile(c, i, sizeClass){
+  const cls = sizeClass ? `logo-tile ${sizeClass}` : 'logo-tile';
+  return `<span class="${cls}">
+      <img src="${c.logo}" alt="${esc(c.name)} logo" loading="lazy"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span class="logo-fallback" style="background:${BADGE_COLORS[i%BADGE_COLORS.length]}">${initials(c.name)}</span>
+    </span>`;
+}
+
+function renderCompanyList(){
+  const el = document.getElementById('companyList');
+  el.innerHTML = `<div class="company-list-head">Partner organisations (${COMPANIES.length})</div>` +
+    COMPANIES.map((c,i)=>`
+      <button class="company-row" data-idx="${i}">
+        ${logoTile(c, i)}
+        <span><span class="co-name">${esc(c.name)}</span><span class="co-sector">${esc(c.sector)}</span></span>
+      </button>`).join('');
+  el.addEventListener('click', e=>{
+    const row = e.target.closest('.company-row');
+    if(row) showCompany(parseInt(row.dataset.idx,10));
+  });
+}
+
+function showCompany(i){
+  document.querySelectorAll('.company-row').forEach(r=>r.classList.remove('active'));
+  const row = document.querySelector(`.company-row[data-idx="${i}"]`);
+  if(row) row.classList.add('active');
+  const c = COMPANIES[i];
+  document.getElementById('companyDetail').innerHTML = `
+    <div class="co-head">
+      <div class="co-head-left">
+        ${logoTile(c, i, 'lg')}
+        <div><h3>${esc(c.name)}</h3></div>
+      </div>
+      <a class="btn btn-outline-neem btn-sm" href="${c.website}" target="_blank" rel="noopener">Visit site <i class="bi bi-box-arrow-up-right"></i></a>
+    </div>
+    <div class="co-meta"><span class="badge badge-domain">${esc(c.sector)}</span></div>
+    <p class="co-desc">${esc(c.desc)}</p>
+    <div class="co-openings-title">Open roles (${c.roles.length})</div>
+    ${c.roles.map(o=>`
+      <div class="co-role-row">
+        <div class="co-role-top">
+          <div><div class="role">${esc(o.title)}</div><div class="sub">${esc(o.type)} · ${esc(o.vacancies)}</div></div>
+          <button class="btn btn-outline-neem btn-sm apply-btn" data-job="${esc(o.title)}" data-company="${esc(c.name)}">Apply</button>
+        </div>
+        <div class="tag-row">${o.skills.map(s=>`<span class="skill-tag">${esc(s)}</span>`).join('')}<span class="skill-tag" style="color:var(--neem-soft);border-color:rgba(126,168,141,.35)">${esc(o.pay)}</span></div>
+      </div>`).join('')}
+  `;
+}
+
+/* ============================================================
+   RENDER: marquee, courses, team
+   ============================================================ */
+function renderMarquee(){
+  const chips = COMPANIES.map((c,i)=>`
+    <a class="logo-chip" href="${c.website}" target="_blank" rel="noopener">
+      ${logoTile(c, i, 'sm')} ${esc(c.name)}
+    </a>`).join('');
+  document.getElementById('marqueeTrack').innerHTML = chips + chips; // duplicate for seamless loop
+}
+function renderCourses(){
+  document.getElementById('coursesGrid').innerHTML = COURSES.map(c=>`
+    <div class="course-card">
+      <span class="badge badge-domain" style="align-self:flex-start">${esc(c.badge)}</span>
+      <h5>${esc(c.title)}</h5><p>${esc(c.desc)}</p>
+      <button class="btn btn-outline-neem btn-sm" style="align-self:flex-start">Enrol now</button>
+    </div>`).join('');
+}
+function renderTeam(){
+  document.getElementById('teamList').innerHTML = TEAM.map(t=>`
+    <div class="team-item"><span>${esc(t.name)}</span><span class="role">${esc(t.role)}</span></div>`).join('');
+}
+
+/* ============================================================
+   MODALS — generic open/close
+   ============================================================ */
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+document.querySelectorAll('.modal-backdrop-x').forEach(m=>{
+  m.addEventListener('click', e=>{ if(e.target===m) closeModal(m.id); });
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape') document.querySelectorAll('.modal-backdrop-x.show').forEach(m=>closeModal(m.id));
+});
+
+/* ---------- APPLY MODAL ---------- */
+function openApplyModal(jobTitle, companyName){
+  const box = document.getElementById('applyBox');
+  box.innerHTML = `
+    <div class="modal-head"><h5>Quick application</h5><button class="modal-close" onclick="closeModal('applyModal')">&times;</button></div>
+    <div class="modal-body-x">
+      <p class="applying-for">Applying for <b>${esc(jobTitle)}</b> at <b>${esc(companyName)}</b></p>
+      <form id="applyForm">
+        <div class="field"><label>Full name</label><input type="text" name="Applicant_Name" required></div>
+        <div class="field"><label>Email address / College ID</label><input type="email" name="Email" required></div>
+        <div class="field">
+          <label>Resume / portfolio link</label>
+          <input type="url" name="Portfolio_Link" placeholder="https://github.com/..." required>
+          <span class="form-note">Link to a Drive, GitHub or LinkedIn profile.</span>
+        </div>
+        <p class="error-note" id="applyError">Something went wrong sending your application — please try again.</p>
+      </form>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" type="button" onclick="closeModal('applyModal')">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="applySubmitBtn" type="submit" form="applyForm">Submit application</button>
+    </div>`;
+  document.getElementById('applyForm').addEventListener('submit', e => submitToFormspree(e, {
+    kind:'apply', successTitle:'Application sent', successBody:`Thanks — ${jobTitle} at ${companyName} has your details.`,
+    extra:{ Job_Role_Applied: jobTitle, Company: companyName, Form_Type:'Job Application' }
+  }));
+  openModal('applyModal');
+}
+
+/* ---------- SIGNUP MODAL ---------- */
+function openSignupModal(){
+  const box = document.getElementById('signupBox');
+  box.innerHTML = `
+    <div class="modal-head"><h5>Join AyushConnect</h5><button class="modal-close" onclick="closeModal('signupModal')">&times;</button></div>
+    <div class="modal-body-x signup-choice">
+      <p>Choose how you'd like to enter the portal:</p>
+      <button class="btn btn-outline-neem btn-block" style="margin-bottom:10px" onclick="renderSignupForm('student')">Continue as Student (BCA / Healthcare)</button>
+      <button class="btn btn-ghost btn-block" onclick="renderSignupForm('employer')">Continue as Employer / Ministry Official</button>
+    </div>`;
+  openModal('signupModal');
+}
+
+function renderSignupForm(kind){
+  const box = document.getElementById('signupBox');
+  const isStudent = kind === 'student';
+  box.innerHTML = `
+    <div class="modal-head"><h5>${isStudent ? 'Student sign up' : 'Employer sign up'}</h5><button class="modal-close" onclick="closeModal('signupModal')">&times;</button></div>
+    <div class="modal-body-x">
+      <button class="back-link" onclick="openSignupModal()"><i class="bi bi-arrow-left"></i> Back</button>
+      <form id="signupForm">
+        <div class="field"><label>Full name</label><input type="text" name="Full_Name" required></div>
+        <div class="field"><label>${isStudent ? 'Email / College ID' : 'Work email'}</label><input type="email" name="Email" required></div>
+        <div class="field"><label>Phone number</label><input type="tel" name="Phone" required></div>
+        ${isStudent ? `
+        <div class="field"><label>College / University</label><input type="text" name="College" required></div>
+        <div class="field">
+          <label>Stream of interest</label>
+          <select name="Stream" required>
+            <option value="">Select one</option>
+            <option>Software Engineering</option>
+            <option>Data & AI</option>
+            <option>Cloud & Infrastructure</option>
+            <option>Cybersecurity</option>
+            <option>Quant & Finance</option>
+            <option>Product & Design</option>
+          </select>
+        </div>` : `
+        <div class="field"><label>Organisation name</label><input type="text" name="Organisation" required></div>
+        <div class="field"><label>Designation</label><input type="text" name="Designation" required></div>
+        `}
+        <p class="error-note" id="signupError">Something went wrong — please try again.</p>
+      </form>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost btn-sm" type="button" onclick="closeModal('signupModal')">Cancel</button>
+      <button class="btn btn-primary btn-sm" type="submit" form="signupForm" id="signupSubmitBtn">Create account</button>
+    </div>`;
+  document.getElementById('signupForm').addEventListener('submit', e => submitToFormspree(e, {
+    kind:'signup', successTitle:'You\'re in!', successBody:`Thanks for signing up as a ${isStudent?'student':'employer'} — we'll be in touch on the details you shared.`,
+    extra:{ Form_Type: isStudent ? 'Student Signup' : 'Employer Signup' }
+  }));
+}
+
+/* ---------- shared Formspree AJAX submit ---------- */
+async function submitToFormspree(e, opts){
+  e.preventDefault();
+  const form = e.target;
+  const wrap = form.closest('.modal-box');
+  const btn = wrap.querySelector('button[type="submit"]');
+  const errorNote = wrap.querySelector('.error-note');
+  errorNote.style.display = 'none';
+
+  if(FORMSPREE_ID === "YOUR_FORM_ID_HERE"){
+    errorNote.textContent = "Form isn't wired up yet — add your Formspree ID in the script.";
+    errorNote.style.display = 'block';
+    return;
+  }
+  btn.disabled = true;
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Sending…';
+
+  const data = new FormData(form);
+  Object.entries(opts.extra || {}).forEach(([k,v]) => data.append(k,v));
+
+  try{
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method:'POST', body:data, headers:{ 'Accept':'application/json' }
+    });
+    if(res.ok){
+      wrap.innerHTML = `
+        <div class="modal-body-x success-state">
+          <i class="bi bi-check-circle-fill"></i>
+          <h6>${esc(opts.successTitle)}</h6>
+          <p>${esc(opts.successBody)}</p>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-primary btn-sm" onclick="closeModal('${opts.kind==='apply'?'applyModal':'signupModal'}')">Done</button>
+        </div>`;
+    } else { throw new Error('rejected'); }
+  } catch(err){
+    btn.disabled = false;
+    btn.textContent = originalLabel;
+    errorNote.style.display = 'block';
+  }
+}
+
+/* delegate all Apply buttons (grid cards + company detail) */
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.apply-btn');
+  if(b) openApplyModal(b.dataset.job, b.dataset.company);
+});
+
+/* ============================================================
+   SETTINGS / THEME
+   ============================================================ */
+const ACCENTS = {
+  gold:  {a:'#e0a324', as:'#f2c869'},
+  green: {a:'#4f7a63', as:'#7ea88d'},
+  clay:  {a:'#c1633f', as:'#d98363'},
+  plum:  {a:'#8d74b8', as:'#a996cf'}
+};
+function applyTheme(theme, accent){
+  document.documentElement.setAttribute('data-theme', theme);
+  const c = ACCENTS[accent] || ACCENTS.gold;
+  document.documentElement.style.setProperty('--turmeric', c.a);
+  document.documentElement.style.setProperty('--turmeric-soft', c.as);
+}
+function saveSettings(){
+  const theme = document.getElementById('themeSelect').value;
+  const accent = document.getElementById('accentSelect').value;
+  const region = document.getElementById('regionInput').value;
+  applyTheme(theme, accent);
+  localStorage.setItem('ac_theme', theme);
+  localStorage.setItem('ac_accent', accent);
+  localStorage.setItem('ac_region', region);
+  closeModal('settingsModal');
+  showToast('Preferences saved');
+}
+function loadSettings(){
+  const theme = localStorage.getItem('ac_theme') || 'dark';
+  const accent = localStorage.getItem('ac_accent') || 'gold';
+  const region = localStorage.getItem('ac_region') || 'New Delhi, India';
+  const compact = localStorage.getItem('ac_compact') === '1';
+  applyTheme(theme, accent);
+  document.getElementById('themeSelect').value = theme;
+  document.getElementById('accentSelect').value = accent;
+  document.getElementById('regionInput').value = region;
+  document.getElementById('compactToggleSettings').checked = compact;
+  document.getElementById('compactToggle').checked = compact;
+  document.getElementById('cardContainer').classList.toggle('compact', compact);
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+/* ============================================================
+   MISC: animated stat counters + scroll reveal + meter fill
+   ============================================================ */
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target = parseInt(el.dataset.count, 10);
+    const dur = 900; const start = performance.now();
+    function tick(now){
+      const p = Math.min(1, (now-start)/dur);
+      el.textContent = Math.round(target * (1 - Math.pow(1-p,3)));
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+function setupReveal(){
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in-view'); io.unobserve(en.target); } });
+  }, {threshold:.2});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+function fillMeters(){
+  document.querySelectorAll('.meter-fill').forEach(el=>{ el.style.width = el.dataset.fill + '%'; });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+renderCategoryFilters();
+renderOpenings(OPENINGS);
+renderCompanyList();
+renderMarquee();
+renderCourses();
+renderTeam();
+loadSettings();
+document.getElementById('statOpenings').dataset.count = OPENINGS.length;
+animateCounters();
+setupReveal();
+fillMeters();
+</script>
+</body>
+</html>
